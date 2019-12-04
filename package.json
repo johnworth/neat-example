@@ -1,0 +1,35 @@
+{
+  "name": "neat-example",
+  "version": "1.0.0",
+  "description": "NEAT is Next.js, Express.js, Apollo, and Typescript.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig" : {
+    "watch": ["server"],
+    "ext": "ts",
+    "exec": "next"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "next": "^9.1.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.14",
+    "@zeit/next-typescript": "^1.1.1",
+    "cross-env": "^6.0.3",
+    "nodemon": "^2.0.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  }
+}
