@@ -2,21 +2,18 @@
   "name": "neat-example",
   "version": "1.0.0",
   "description": "NEAT is Next.js, Express.js, Apollo, and Typescript.",
-  "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "nodemonConfig": {
     "watch": [
-      "server"
+      "server",
+      "data"
     ],
-    "ext": "ts",
-    "exec": "next"
+    "ext": "js ts",
+    "exec": "ts-node --project tsconfig.server.json server/index.ts"
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.6.9",
