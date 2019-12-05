@@ -19,8 +19,15 @@
     "exec": "next"
   },
   "dependencies": {
+    "apollo-datasource-rest": "^0.6.9",
+    "apollo-server": "^2.9.12",
     "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-bigint": "^1.0.0",
+    "graphql-type-json": "^0.3.1",
     "next": "^9.1.4",
+    "next-cli": "^1.0.0",
+    "pg": "^7.14.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
