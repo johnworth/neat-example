@@ -6,7 +6,7 @@ class Functions extends RESTDataSource {
         this.baseURL = process.env.GATEWAY;
     }
 
-    async getUserInfo(username) {
+    async getUserInfo(username: string) {
         var data =  await this.post(
             'function/get-user-info',
             {'username':username},

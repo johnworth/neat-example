@@ -1,42 +1,42 @@
 export default {
     App: {
-        parameters: async (app, _args, { dataSources }) => {
+        parameters: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.appParametersByID(app.id);
         },
 
-        permissions: async (app, _args, { dataSources }) => {
+        permissions: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.permissionsService.getAppPermissions(app.id);
         },
 
-        documentation: async (app, _args, { dataSources }) => {
+        documentation: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.appDocsByID(app.id);
         },
 
-        references: async (app, _args, { dataSources }) => {
+        references: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.appReferencesByID(app.id);
         },
 
-        avus: async (app, _args, { dataSources }) => {
+        avus: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.metadataDatabase.getAVUs('app', app.id);
         },
 
-        comments: async (app, _args, { dataSources }) => {
+        comments: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.metadataDatabase.getComments('app', app.id);
         },
 
-        steps: async (app, _args, { dataSources }) => {
+        steps: async (app: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getAppStepsByAppID(app.id);
         },
     },
 
     AppStep: {
-        tool: async (step, _args, { dataSources }) => {
+        tool: async (step: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getToolByID(step.tool_id);
         },
     },
 
     AppDocumentation: {
-        created_by: async (doc, _args, { dataSources }) => {
+        created_by: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
             const username = await dataSources.deDatabase.getUsername(doc.created_by);
             if (username !== null) {
                 return dataSources.functions.getUserInfo(username);
@@ -45,7 +45,7 @@ export default {
             }
         },
 
-        modified_by: async (doc, _args, { dataSources }) => {
+        modified_by: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
             const username = await dataSources.deDatabase.getUsername(doc.modified_by);
             if (username !== null) {
                 return dataSources.functions.getUserInfo(username);

@@ -1,54 +1,54 @@
 export default {
     Tool: {
-        container: async (tool, _args, { dataSources }) => {
+        container: async (tool: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getContainerSettingsByToolID(tool.id);
         },
 
-        container_image: async (tool, _args, { dataSources }) => {
+        container_image: async (tool: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getContainerImageByToolID(tool.id);
         },
 
-        tool_requests: async (tool, _args, { dataSources }) => {
+        tool_requests: async (tool: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getToolRequests(tool.id);
         },
 
-        gpu_enabled: async (tool, _args, { dataSources }) => {
+        gpu_enabled: async (tool: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getGPUEnabled(tool.id);
         }
     },
 
     ToolRequest: {
-        tool_architecture: async (request, _args, { dataSources }) => {
+        tool_architecture: async (request: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getToolArchitecture(request.tool_architecture_id);
         },
 
-        statuses: async (request, _args, { dataSources }) => {
+        statuses: async (request: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getToolRequestStatuses(request.id);
         },
     },
 
     ToolRequestStatus: {
-        status_code: async (status, _args, { dataSources }) => {
+        status_code: async (status: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getToolRequestStatusCode(status.tool_request_status_code_id);
         },
     },
 
     Container: {
-        volumes_froms: async (container, _args, { dataSources }) => {
+        volumes_froms: async (container: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getContainerVolumesFromsByContainerID(container.id);
         },
 
-        volumes: async (container, _args, { dataSources }) => {
+        volumes: async (container: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getContainerVolumesByContainerID(container.id);
         },
 
-        devices: async (container, _args, { dataSources }) => {
+        devices: async (container: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getContainerDevicesByContainerID(container.id);
         }
     },
 
     ContainerVolumesFrom: {
-        image: async (vf, _args, { dataSources }) => {
+        image: async (vf: any, _args: any, { dataSources }:{ dataSources: any }) => {
             console.log(vf);
             return dataSources.deDatabase.getContainerImageByID(vf.container_images_id);
         },

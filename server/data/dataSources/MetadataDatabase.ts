@@ -57,19 +57,6 @@ ${templateBaseQuery}
  WHERE t.created_by = $1
 `;
 
-const templateQuery = `
-SELECT t.id,
-       t.name,
-       t.deleted,
-       t.created_by,
-       t.modified_by,
-       t.created_on,
-       t.modified_on,
-       t.description
-  FROM templates t
- WHERE t.id = $1
-`
-
 const templateAttrsQuery = `
 WITH RECURSIVE gettemplateattrs AS (
     SELECT a.id,
@@ -185,7 +172,7 @@ const valid_target_types = ['analysis', 'app', 'avu', 'file', 'folder', 'user'];
 
 class MetadataDatabase extends DataSource {
     
-    async getAVUs(target_type, target_id) {
+    async getAVUs(target_type: string, target_id: string) {
         target_type = target_type.toLowerCase();
 
         if (!valid_target_types.includes(target_type)) {
@@ -196,7 +183,7 @@ class MetadataDatabase extends DataSource {
         return results.rows;
     }
 
-    async getComments(target_type, target_id) {
+    async getComments(target_type: string, target_id: string) {
         target_type = target_type.toLowerCase();
 
         if (!valid_target_types.includes(target_type)) {
@@ -207,12 +194,12 @@ class MetadataDatabase extends DataSource {
         return results.rows;
     }
 
-    async getTemplateByID(template_id) {
+    async getTemplateByID(template_id: string) {
         const results = await queryMetadataDB(templateByIDQuery, [template_id]);
         return results.rows[0] || null;
     }
 
-    async getTemplatesByCreator(username) {
+    async getTemplatesByCreator(username: string) {
         const results = await queryMetadataDB(templatesByCreatorQuery, [username]);
         return results.rows;
     }
@@ -222,22 +209,22 @@ class MetadataDatabase extends DataSource {
         return results.rows;
     }
 
-    async getTemplateAttributesByID(template_id) {
+    async getTemplateAttributesByID(template_id: string) {
         const results = await queryMetadataDB(templateAttrsQuery, [template_id]);
         return results.rows;
     }
 
-    async getAttributeSynonyms(attribute_id) {
+    async getAttributeSynonyms(attribute_id: string) {
         const results = await queryMetadataDB(attrSynonymsQuery, [attribute_id]);
         return results.rows;
     }
 
-    async getAttributeEnumValues(attribute_id) {
+    async getAttributeEnumValues(attribute_id: string) {
         const results = await queryMetadataDB(attrEnumValuesQuery, [attribute_id]);
         return results.rows;
     }
 
-    async getAttributeSettings(attribute_id) {
+    async getAttributeSettings(attribute_id: string) {
         const results = await queryMetadataDB(attrSettingsQuery, [attribute_id]);
         return results.rows[0] || null;
     }

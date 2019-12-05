@@ -4,43 +4,43 @@ export default {
         //     return dataSources.appsService.getUserInfo(user.username)
         // },
 
-        saved_searches: async (user, _args, { dataSources }) => {
+        saved_searches: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getUserSavedSearches(user.id);
         },
 
-        session: async (user, _args, { dataSources }) => {
+        session: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getUserSession(user.id);
         },
 
-        preferences: async (user, _args, { dataSources }) => {
+        preferences: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.getUserPreferences(user.id);
         },
 
-        webhooks: async (user, _args, { dataSources }) => {
+        webhooks: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.appsService.getUserWebhooks(user.username);
         },
 
-        apps: async (user, _args, { dataSources }) => {
+        apps: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.appsService.getAccessibleApps(user.username);
         },
 
-        workspace: async (user, _args, { dataSources }) => {
+        workspace: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.appsService.getWorkspace(user.username);
         },
 
-        system_ids: async (user, _args, { dataSources }) => {
+        system_ids: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.appsService.getSystemIDs(user.username);
         },
 
-        analyses: async (user, _args, { dataSources }) => {
+        analyses: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.deDatabase.analysesLookupsByUser(user.username);
         },
 
-        tools: async (user, _args, { dataSources }) => {
+        tools: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.appsService.getTools(user.username);
         },
 
-        avus: async (user, _args, { dataSources }) => {
+        avus: async (user: any, _args: any, { dataSources }:{ dataSources: any }) => {
             return dataSources.metadataDatabase.getAVUs('user', user.id);
         },
     },

@@ -9,10 +9,10 @@ const metadataDBpool = new Pool({
     connectionString: process.env.METADATA_DB_URL,
 });
 
-export const queryDEDB = (text, params) => {
+export const queryDEDB = (text: string, params: any[]) => {
     return deDBpool.query(text, params);
 };
 
-export const queryMetadataDB = (text, params) => {
+export const queryMetadataDB = (text: string, params: any[]) => {
     return metadataDBpool.query(text, params);
 };

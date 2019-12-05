@@ -6,17 +6,17 @@ class UserInfoService extends RESTDataSource {
         this.baseURL = process.env.USER_INFO_URL;
     }
 
-    async getSession(username) {
+    async getSession(username: string) {
         const data = await this.get(`sessions/${username}@iplantcollaborative.org`);
         return JSON.parse(data);
     }
 
-    async getSavedSearches(username) {
+    async getSavedSearches(username: string) {
         const data = await this.get(`searches/${username}@iplantcollaborative.org`);
         return JSON.parse(data);
     }
 
-    async getPreferences(username) {
+    async getPreferences(username: string) {
         const data = await this.get(`preferences/${username}@iplantcollaborative.org`);
         return JSON.parse(data);
     }

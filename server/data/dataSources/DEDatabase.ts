@@ -1,6 +1,6 @@
 import { DataSource } from 'apollo-datasource';
 import { queryDEDB } from '../database';
-import { _ } from 'lodash';
+import _ from 'lodash';
 
 // Common fields and joins for getting information about an analysis
 // from the database.
@@ -132,11 +132,6 @@ SELECT step.id,
   JOIN job_types jt ON tasks.job_type_id = jt.id
 `;
 
-const appStepsByAppIDQuery = `
-${appStepBase}
- WHERE step.app_id = $1 
-`;
-
 const appStepByNumberAndAppIDQuery = `
 ${appStepBase}
  WHERE step.step = $1
@@ -158,22 +153,6 @@ SELECT steps.step_number,
   JOIN job_types ON steps.job_type_id = job_types.id
   JOIN jobs ON steps.job_id = jobs.id
  WHERE steps.job_id = $1
-`;
-
-const analysisStepUpdatesQuery = `
-SELECT updates.id,
-       updates.external_id,
-       updates.message,
-       updates.status,
-       updates.sent_from,
-       updates.sent_from_hostname,
-       updates.sent_on,
-       updates.propagated,
-       updates.propagation_attempts,
-       updates.last_propagation_attempt,
-       updates.created_date
-  FROM job_status_updates updates
- WHERE updates.external_id = $1
 `;
 
 var containerSettingsByToolIDQuery = `
@@ -336,7 +315,7 @@ SELECT c.id,
 // Adds '@iplantcollaborative.org' to the username if it's not already
 // present. The database uses <user>@iplantcollaborative.org, while
 // most of the services only need the <user> part.
-const fixUsername = (username) => { 
+const fixUsername = (username: string) => { 
     if (!username.endsWith("@iplantcollaborative.org")) {
         username = username.concat("@iplantcollaborative.org")
     }
@@ -349,7 +328,7 @@ class DEDatabase extends DataSource {
     // Returns a list of analyses found by their current status. Check the analysisBaseSelect
     // string to see the names of the keys in the objects returned. The column names become the
     // field names in the objects.
-    async analysisLookupsByStatus(status) {
+    async analysisLookupsByStatus(status: string) {
         const normalizedStatus = status.charAt(0).toUpperCase() + status.toLowerCase().slice(1);
         const results = await queryDEDB(lookupsByStatusQuery, [normalizedStatus]);
         return results.rows;
@@ -358,7 +337,7 @@ class DEDatabase extends DataSource {
     // Returns a single analysis found by an external ID. Returns null if nothing is found. 
     // Check the analysisBaseSelect string to see the names of the keys in the object returned, the
     // column names become the field names in the object.
-    async analysisLookupsByExternalID(externalID) {
+    async analysisLookupsByExternalID(externalID: string) {
         const results = await queryDEDB(lookupsByExternalIDQuery, [externalID]);
         return results.rows[0] || null;
     }
@@ -366,7 +345,7 @@ class DEDatabase extends DataSource {
     // Returns a single analysis found by its UUID. Returns null if nothing is found. 
     // Check the analysisBaseSelect string to see the names of the keys in the object returned, the
     // column names become the field names in the object.
-    async analysisLookupsByID(analysisID) {
+    async analysisLookupsByID(analysisID: string) {
         const results = await queryDEDB(lookupsByIDQuery, [analysisID]);
         return results.rows[0] || null;
     }
@@ -374,7 +353,7 @@ class DEDatabase extends DataSource {
     // Returns a single analysis found by the username of the user that launched it and the UUID it
     // was assigned. Returns null if nothing is found. Check the analysisBaseSelect string to see 
     // the names of the keys in the object returned, the column names become the field names in the object.
-    async analysisLookupsByIDAndUser(username, analysisID) {
+    async analysisLookupsByIDAndUser(username: string, analysisID: string) {
         username = fixUsername(username);
         const results = await queryDEDB(lookupsByIDAndUserQuery, [analysisID, username]);
         return results.rows[0] || null;
@@ -383,7 +362,7 @@ class DEDatabase extends DataSource {
     // Returns a list of analyses found by the username of the user that launched them. Returns an empty
     // list if nothing is found. Check the analysisBaseSelect string to see the names of the keys in the 
     // objects returned. The column names become the field names in the objects.
-    async analysesLookupsByUser(username) {
+    async analysesLookupsByUser(username: string) {
         username = fixUsername(username);
         const results = await queryDEDB(lookupsByUserQuery, [username]);
         return results.rows;
@@ -392,7 +371,7 @@ class DEDatabase extends DataSource {
     // Returns a list of app parameters for the app indicated by the UUID passed in. Returns an empty
     // list of nothing is found. Check the appParametersQuery string to see the name of the keys in the
     // objects returned, the column names become of the field names in the objects.
-    async appParametersByID(appID) {
+    async appParametersByID(appID: string) {
         const results =  await queryDEDB(appParametersQuery, [appID]);
         return results.rows;
     }
@@ -400,7 +379,7 @@ class DEDatabase extends DataSource {
     // Returns a list of app references for the app indicated by the UUID passed in. Returns an empty
     // list if nothing is found. Check the appReferencesQuery string to find the names of the keys in
     // objects returned. The column names become the field names in the objects.
-    async appReferencesByID(appID) {
+    async appReferencesByID(appID: string) {
         const results = await queryDEDB(appReferencesQuery, [appID]);
         return results.rows;
     }
@@ -408,18 +387,18 @@ class DEDatabase extends DataSource {
     // Returns an app documentation object for the app specified by the UUID passed in. Returns a null
     // if nothing is found. Check the appDocsQuery string to find the field names for the object, the
     // column names are converted to the field names.
-    async appDocsByID(appID) {
+    async appDocsByID(appID: string) {
         const results = await queryDEDB(appDocsQuery, [appID]);
         return results.rows[0] || null;
     }
 
     // Returns the username associated with the user UUID passed in. Returns null if nothing is found.
-    async getUsername(userID) {
+    async getUsername(userID: string) {
         const results = await queryDEDB(`SELECT username FROM users WHERE id = $1`, [userID]);
         return results.rows[0]["username"] || null;
     }
 
-    async getUserPreferences(userID) {
+    async getUserPreferences(userID: string) {
         const results = await queryDEDB(userPrefsQuery, [userID]);
 
         if (results.rows.length < 1) {
@@ -436,7 +415,7 @@ class DEDatabase extends DataSource {
         return retval;
     }
 
-    async getUserSession(userID) {
+    async getUserSession(userID: string) {
         const results = await queryDEDB('SELECT session FROM user_sessions WHERE id = $1', [userID]);
 
         if (results.rows.length < 1) {
@@ -453,7 +432,7 @@ class DEDatabase extends DataSource {
         return retval;
     }
 
-    async getUserSavedSearches(userID) {
+    async getUserSavedSearches(userID: string) {
         const results = await queryDEDB('SELECT saved_searches FROM user_saved_searches WHERE id = $1', [userID]);
 
         if (results.rows.length < 1) {
@@ -470,17 +449,17 @@ class DEDatabase extends DataSource {
         return retval;
     }
 
-    async getContainerSettingsByToolID(toolID) {
+    async getContainerSettingsByToolID(toolID: string) {
         const results = await queryDEDB(containerSettingsByToolIDQuery, [toolID]);
         return results.rows[0] || null;
     }
 
-    async getAppStepsByAppID(appID) {
+    async getAppStepsByAppID(appID: string) {
         const results = await queryDEDB(appStepsQuery, [appID]);
         return results.rows;
     }
 
-    async getAppStepByNumberAndAppID(step_number, appID) {
+    async getAppStepByNumberAndAppID(step_number: number, appID: string) {
         if (step_number > 0) {
             step_number = step_number - 1;
         }
@@ -488,67 +467,67 @@ class DEDatabase extends DataSource {
         return results.rows[0] || null;
     }
     
-    async getAnalysisStepsByID(analysis_id) {
+    async getAnalysisStepsByID(analysis_id: string) {
         const results = await queryDEDB(analysisStepsByIDQuery, [analysis_id]);
         return results.rows;
     }
 
-    async getAnalysisStepUpdates(external_id) {
+    async getAnalysisStepUpdates(external_id: string) {
         const results = await queryDEDB(analysisStepsByIDQuery, [external_id]);
         return results.rows;
     }
 
-    async getContainerImageByToolID(tool_id) {
+    async getContainerImageByToolID(tool_id: string) {
         const results = await queryDEDB(containerImageByToolsIDQuery, [tool_id]);
         return results.rows[0] || null;
     }
 
-    async getContainerImageByID(image_id) {
+    async getContainerImageByID(image_id: string) {
         const results = await queryDEDB(containerImageByIDQuery, [image_id]);
         return results.rows[0] || null;
     }
 
-    async getContainerDevicesByContainerID(container_settings_id) {
+    async getContainerDevicesByContainerID(container_settings_id: string) {
         const results = await queryDEDB(containerDevicesByContainerIDQuery, [container_settings_id]);
         return results.rows;
     }
 
-    async getContainerVolumesByContainerID(container_settings_id) {
+    async getContainerVolumesByContainerID(container_settings_id: string) {
         const results = await queryDEDB(containerVolumesByContainerIDQuery, [container_settings_id]);
         return results.rows;
     }
 
-    async getContainerVolumesFromsByContainerID(container_settings_id) {
+    async getContainerVolumesFromsByContainerID(container_settings_id: string) {
         const results = await queryDEDB(containerVolumesFromsByContainerIDQuery, [container_settings_id]);
         return results.rows;
     }
 
-    async getToolByID(tool_id) {
+    async getToolByID(tool_id: string) {
         const results = await queryDEDB(toolQuery, [tool_id]);
         return results.rows[0] || null;
     }
 
-    async getToolRequests(tool_id) {
+    async getToolRequests(tool_id: string) {
         const results = await queryDEDB(toolRequestQuery, [tool_id]);
         return results.rows;
     }
 
-    async getToolArchitecture(arch_id) {
+    async getToolArchitecture(arch_id: string) {
         const results = await queryDEDB(toolArchitectureQuery, [arch_id]);
         return results.rows[0] || null;
     }
 
-    async getToolRequestStatuses(request_id) {
+    async getToolRequestStatuses(request_id: string) {
         const results = await queryDEDB(toolRequestStatusesQuery, [request_id]);
         return results.rows;
     }
 
-    async getToolRequestStatusCode(code_id) {
+    async getToolRequestStatusCode(code_id: string) {
         const results = await queryDEDB(toolRequestStatusCodeQuery, [code_id]);
         return results.rows[0] || null;
     }
 
-    async getGPUEnabled(tool_id) {
+    async getGPUEnabled(tool_id: string) {
         const container_settings = await this.getContainerSettingsByToolID(tool_id);
         if (container_settings === null) {
             throw `no container_settings found for tool ID ${tool_id}`;
