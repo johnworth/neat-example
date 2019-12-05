@@ -11,8 +11,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "nodemonConfig" : {
-    "watch": ["server"],
+  "nodemonConfig": {
+    "watch": [
+      "server"
+    ],
     "ext": "ts",
     "exec": "next"
   },
