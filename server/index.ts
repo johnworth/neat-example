@@ -3,7 +3,6 @@ import next from 'next';
 import { ApolloServer } from 'apollo-server-express';
 
 import { 
-    Functions, 
     AppsService, 
     UserInfoService,
     DEDatabase,
@@ -25,7 +24,6 @@ const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources: () => ({
-        functions: new Functions(),
         appsService: new AppsService(),
         userInfoService: new UserInfoService(),
         deDatabase: new DEDatabase(),
