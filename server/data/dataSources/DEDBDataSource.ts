@@ -323,7 +323,7 @@ const fixUsername = (username: string) => {
 };
 
 // A custom Apollo data source capable of getting information out of the DE database.
-class DEDatabase extends DataSource {
+export default class DEDBDataSource extends DataSource {
 
     // Returns a list of analyses found by their current status. Check the analysisBaseSelect
     // string to see the names of the keys in the objects returned. The column names become the
@@ -546,5 +546,3 @@ class DEDatabase extends DataSource {
 
 
 }
-
-export default DEDatabase;

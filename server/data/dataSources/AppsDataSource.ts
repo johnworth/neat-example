@@ -1,7 +1,7 @@
 import  { RESTDataSource } from 'apollo-datasource-rest';
 import _ from 'lodash';
 
-class AppsService extends RESTDataSource {
+export default class AppsDataSource extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = process.env.APPS_URL;
@@ -90,5 +90,3 @@ class AppsService extends RESTDataSource {
         return await this.get(`apps/${systemID}/${appID}?user=${username}`);
     }
 }
-
-export default AppsService;

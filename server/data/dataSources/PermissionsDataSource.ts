@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-class PermissionsService extends RESTDataSource {
+export default class PermissionsDataSource extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = process.env.PERMISSIONS_URL;
@@ -21,5 +21,3 @@ class PermissionsService extends RESTDataSource {
         return data.permissions;
     }
 }
-
-export default PermissionsService;

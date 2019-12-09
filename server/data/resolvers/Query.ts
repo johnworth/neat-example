@@ -5,7 +5,7 @@ export default {
             { username }:{ username: string}, 
             { dataSources }:{ dataSources: any }
         ) => {
-            var baseInfo = await dataSources.functions.getUserInfo(username);
+            var baseInfo = await dataSources.iplantGroupsDataSource.getUserInfo(username);
             baseInfo["id"] = await dataSources.appsService.getUserInfo(username);
             return baseInfo;
         },

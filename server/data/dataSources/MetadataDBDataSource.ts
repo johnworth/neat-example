@@ -170,7 +170,7 @@ ORDER BY post_time DESC
 
 const valid_target_types = ['analysis', 'app', 'avu', 'file', 'folder', 'user'];
 
-class MetadataDatabase extends DataSource {
+export default class MetadataDBDataSource extends DataSource {
     
     async getAVUs(target_type: string, target_id: string) {
         target_type = target_type.toLowerCase();
@@ -229,5 +229,3 @@ class MetadataDatabase extends DataSource {
         return results.rows[0] || null;
     }
 }
-
-export default MetadataDatabase;

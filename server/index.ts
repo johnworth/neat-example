@@ -2,15 +2,14 @@ import express from 'express';
 import next from 'next';
 import { ApolloServer } from 'apollo-server-express';
 
-import { 
-    AppsService, 
-    DEDatabase,
-    PermissionsService,
-    MetadataDatabase,
- } from './data/dataSources';
+import typeDefs from './data/typeDefs';
+import resolvers from './data/resolvers';
 
- import typeDefs from './data/typeDefs';
- import resolvers from './data/resolvers';
+import IPlantGroupsDataSource from './data/dataSources/IPlantGroupsDataSource';
+import AppsDataSource from './data/dataSources/AppsDataSource';
+import DEDBDataSource from './data/dataSources/DEDBDataSource';
+import PermissionsDataSource from './data/dataSources/PermissionsDataSource';
+import MetadataDBDataSource from './data/dataSources/MetadataDBDataSource';
 
 
 const dev: boolean = process.env.NODE_ENV !== 'production';
@@ -23,10 +22,11 @@ const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources: () => ({
-        appsService: new AppsService(),
-        deDatabase: new DEDatabase(),
-        permissionsService: new PermissionsService(),
-        metadataDatabase: new MetadataDatabase(),
+        appsService: new AppsDataSource(),
+        iplantGroupsDataSource: new IPlantGroupsDataSource(),
+        deDatabase: new DEDBDataSource(),
+        permissionsService: new PermissionsDataSource(),
+        metadataDatabase: new MetadataDBDataSource(),
     }),
 });
 

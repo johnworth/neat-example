@@ -38,20 +38,12 @@ export default {
     AppDocumentation: {
         created_by: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
             const username = await dataSources.deDatabase.getUsername(doc.created_by);
-            if (username !== null) {
-                return dataSources.functions.getUserInfo(username);
-            } else {
-                return null;
-            }
+            return dataSources.iplantGroupsDataSource.getUserInfo(username);
         },
 
         modified_by: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
             const username = await dataSources.deDatabase.getUsername(doc.modified_by);
-            if (username !== null) {
-                return dataSources.functions.getUserInfo(username);
-            } else {
-                return null;
-            }
+            return dataSources.iplantGroupsDataSource.getUserInfo(username);
         },
     },
 };

@@ -1,11 +1,11 @@
 export default {
     AVU: {
         created_by: async (avu: any, _args: any, { dataSources }:{ dataSources: any }) => {
-            return dataSources.functions.getUserInfo(avu.created_by);
+            return dataSources.iplantGroupsDataSource.getUserInfo(avu.created_by);
         },
 
         modified_by: async (avu: any, _args: any, { dataSources }:{ dataSources: any }) => {
-            return dataSources.functions.getUserInfo(avu.modified_by);
+            return dataSources.iplantGroupsDataSource.getUserInfo(avu.modified_by);
         },
     },
 
