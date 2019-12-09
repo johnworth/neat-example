@@ -4,7 +4,6 @@ import { ApolloServer } from 'apollo-server-express';
 
 import { 
     AppsService, 
-    UserInfoService,
     DEDatabase,
     PermissionsService,
     MetadataDatabase,
@@ -25,7 +24,6 @@ const apolloServer = new ApolloServer({
     resolvers,
     dataSources: () => ({
         appsService: new AppsService(),
-        userInfoService: new UserInfoService(),
         deDatabase: new DEDatabase(),
         permissionsService: new PermissionsService(),
         metadataDatabase: new MetadataDatabase(),
