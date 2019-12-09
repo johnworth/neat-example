@@ -1,7 +1,7 @@
 // Retrieve information from the iplant-groups service
 
 import { RESTDataSource } from 'apollo-datasource-rest';
-import IPlantGroupsUserInfo from '../../../common/types/IplantGroupsUserInfo';
+import UserInfo from '../../../common/types/UserInfo';
 
 export default class IPlantGroupsDataSource extends RESTDataSource {
     grouperUser?: string;
@@ -22,7 +22,7 @@ export default class IPlantGroupsDataSource extends RESTDataSource {
      * @param username  A string containing the username. The 
      * @iplantcollaborative.org trailing text is removed if present.
      */
-    async getUserInfo(username: string): Promise<IPlantGroupsUserInfo> {
+    async getUserInfo(username: string): Promise<UserInfo> {
         let requestUsername = username.replace("@iplantcollaborative.org", "");
         let retval = await this.get(`/subjects/${requestUsername}?user=${this.grouperUser}`);
         retval.username = requestUsername;

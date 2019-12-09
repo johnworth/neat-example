@@ -5,8 +5,8 @@ export default {
             { username }:{ username: string}, 
             { dataSources }:{ dataSources: any }
         ) => {
-            var baseInfo = await dataSources.iplantGroupsDataSource.getUserInfo(username);
-            baseInfo["id"] = await dataSources.appsService.getUserInfo(username);
+            var baseInfo = await dataSources.iplantGroups.getUserInfo(username);
+            baseInfo["id"] = await dataSources.apps.getUserInfo(username);
             return baseInfo;
         },
 
@@ -15,7 +15,7 @@ export default {
             { username, appID, systemID}:{username: string, appID: string, systemID: string}, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return await dataSources.appsService.getAppPermissions(username, appID, systemID);
+            return await dataSources.apps.getAppPermissions(username, appID, systemID);
         },
 
         analysis: async (
@@ -23,21 +23,21 @@ export default {
             { username, analysisID }:{ username: string, analysisID: string}, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return await dataSources.deDatabase.analysisLookupsByIDAndUser(username, analysisID);
+            return await dataSources.deDB.analysisLookupsByIDAndUser(username, analysisID);
         },
 
         app: async (_source: any, 
             { username, appID, systemID }:{ username: string, appID: string, systemID: string}, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return await dataSources.appsService.getApp(username, appID, systemID);
+            return await dataSources.apps.getApp(username, appID, systemID);
         },
 
         analysesByStatus: async (_source: any, 
             { status }: { status: string }, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return await dataSources.deDatabase.analysisLookupsByStatus(status);
+            return await dataSources.deDB.analysisLookupsByStatus(status);
         },
 
         analysisByExternalID: async (
@@ -45,7 +45,7 @@ export default {
             { externalID }:{ externalID: string }, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return await dataSources.deDatabase.analysisLookupsByExternalID(externalID);
+            return await dataSources.deDB.analysisLookupsByExternalID(externalID);
         },
 
         analysisByID: async (
@@ -53,7 +53,7 @@ export default {
             { analysisID }:{ analysisID: string }, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return await dataSources.deDatabase.analysisLookupsByID(analysisID);
+            return await dataSources.deDB.analysisLookupsByID(analysisID);
         },
 
         templates: async (
@@ -61,7 +61,7 @@ export default {
             {}:object, 
             { dataSources }:{ dataSources: any }
         ) => {
-            return dataSources.metadataDatabase.getAllTemplates();
+            return dataSources.metadataDB.getAllTemplates();
         },
     },
 };

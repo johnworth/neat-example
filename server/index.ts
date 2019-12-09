@@ -22,11 +22,11 @@ const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources: () => ({
-        appsService: new AppsDataSource(),
-        iplantGroupsDataSource: new IPlantGroupsDataSource(),
-        deDatabase: new DEDBDataSource(),
-        permissionsService: new PermissionsDataSource(),
-        metadataDatabase: new MetadataDBDataSource(),
+        apps: new AppsDataSource(),
+        iplantGroups: new IPlantGroupsDataSource(),
+        deDB: new DEDBDataSource(),
+        permissions: new PermissionsDataSource(),
+        metadataDB: new MetadataDBDataSource(),
     }),
 });
 

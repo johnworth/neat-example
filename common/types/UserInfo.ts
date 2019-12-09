@@ -1,4 +1,4 @@
-export default interface IPlantGroupsUserInfo {
+export default interface UserInfo {
     id: string;
     name: string;
     firstName: string;
