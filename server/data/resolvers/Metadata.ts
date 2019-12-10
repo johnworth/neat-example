@@ -1,30 +1,59 @@
+import AVU from 'common/types/AVU';
+import User from 'common/types/User';
+import Template, { TemplateAttribute } from 'common/types/Template';
+import { TemplateAttributeSynonym, TemplateAttributeEnumValue } from 'common/types/Template';
+
 export default {
     AVU: {
-        created_by: async (avu: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        created_by: async (
+            avu: AVU, 
+            _args: any, 
+            { dataSources }:{ dataSources: any }
+        ): Promise<User> => {
             return dataSources.iplantGroups.getUserInfo(avu.created_by);
         },
 
-        modified_by: async (avu: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        modified_by: async (
+            avu: AVU, 
+            _args: any, 
+            { dataSources }:{ dataSources: any }
+        ): Promise<User> => {
             return dataSources.iplantGroups.getUserInfo(avu.modified_by);
         },
     },
 
     Template: {
-        attributes: async (tmpl: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        attributes: async (
+            tmpl: Template, 
+            _args: any, 
+            { dataSources }:{ dataSources: any }
+        ): Promise<TemplateAttribute[]> => {
             return dataSources.metadataDB.getTemplateAttributesByID(tmpl.id);
         },
     },
 
     TemplateAttribute: {
-        synonyms: async (attr: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        synonyms: async (
+            attr: TemplateAttribute, 
+            _args: any, 
+            { dataSources }:{ dataSources: any }
+        ): Promise<TemplateAttributeSynonym[]> => {
             return dataSources.metadataDB.getAttributeSynonyms(attr.id);
         },
 
-        enum_values: async (attr: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        enum_values: async (
+            attr: TemplateAttribute, 
+            _args: any, 
+            { dataSources }:{ dataSources: any }
+        ): Promise<TemplateAttributeEnumValue> => {
             return dataSources.metadataDB.getAttributeEnumValues(attr.id);
         },
 
-        settings: async (attr: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        settings: async (
+            attr: TemplateAttribute, 
+            _args: any, 
+            { dataSources }:{ dataSources: any }
+        ): Promise<TemplateAttribute> => {
             return dataSources.metadataDB.getAttributeSettings(attr.id);
         },
     },

@@ -1,6 +1,6 @@
 
 export interface Workspace {
-    id: string;
+    id?: string;
     root_category_id?: string;
     is_public?: boolean;
     new_workspace?: boolean;
@@ -24,7 +24,7 @@ export interface Webhook {
     type?: WebhookType
 }
 
-export default interface UserInfo {
+export default interface User {
     id?: string;
     name?: string;
     first_name?: string;

@@ -1,9 +1,13 @@
-import UserInfo, * as User from '../../../common/types/UserInfo';
+import User, {
+    Webhook,
+    Workspace,
+    SystemIDs,
+} from '../../../common/types/User';
 
 export default {
     User: {
         saved_searches: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<string> => {
@@ -11,7 +15,7 @@ export default {
         },
 
         session: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<any>=> {
@@ -19,7 +23,7 @@ export default {
         },
 
         preferences: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<any> => {
@@ -27,15 +31,15 @@ export default {
         },
 
         webhooks: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
-        ): Promise<User.Webhook> => {
+        ): Promise<Webhook> => {
             return dataSources.apps.getUserWebhooks(user.username);
         },
 
         apps: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<any[]> => {
@@ -43,23 +47,23 @@ export default {
         },
 
         workspace: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
-        ): Promise<User.Workspace> => {
+        ): Promise<Workspace> => {
             return dataSources.apps.getWorkspace(user.username);
         },
 
         system_ids: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
-        ): Promise<User.SystemIDs> => {
+        ): Promise<SystemIDs> => {
             return dataSources.apps.getSystemIDs(user.username);
         },
 
         analyses: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<any[]> => {
@@ -67,7 +71,7 @@ export default {
         },
 
         tools: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<any[]> => {
@@ -75,7 +79,7 @@ export default {
         },
 
         avus: async (
-            user: UserInfo, 
+            user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<any[]> => {

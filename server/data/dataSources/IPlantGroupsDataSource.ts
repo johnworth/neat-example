@@ -1,7 +1,7 @@
 // Retrieve information from the iplant-groups service
 
 import { RESTDataSource } from 'apollo-datasource-rest';
-import UserInfo from '../../../common/types/UserInfo';
+import UserInfo from '../../../common/types/User';
 
 export default class IPlantGroupsDataSource extends RESTDataSource {
     grouperUser?: string;
@@ -26,6 +26,6 @@ export default class IPlantGroupsDataSource extends RESTDataSource {
         let requestUsername = username.replace("@iplantcollaborative.org", "");
         let retval = await this.get(`/subjects/${requestUsername}?user=${this.grouperUser}`);
         retval.username = requestUsername;
-        return retval
+        return retval;
     }
 }
