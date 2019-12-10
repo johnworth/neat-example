@@ -6,22 +6,22 @@ export interface TemplateAttributeValueType {
 export interface TemplateAttributeEnumValue {
     id?: string
     value?: string
-    is_default?: Boolean
-    display_order?: Number
+    is_default?: boolean
+    display_order?: number
 }
 
 export interface TemplateAttributeSynonym {
     id?: string
     name?: string
     description?: string
-    required?: Boolean
+    required?: boolean
     value_type?: TemplateAttributeValueType
     created_by?: string
     modified_by?: string
     created_on?: string
     modified_on?: string
-    settings?: JSON
-    display_order?: Number
+    settings?: any
+    display_order?: number
     enum_values?: TemplateAttributeEnumValue[]
 }
 
@@ -29,14 +29,14 @@ export interface TemplateAttribute {
     id?: string
     name?: string
     description?: string
-    required?: Boolean
+    required?: boolean
     value_type?: TemplateAttributeValueType
     created_by?: string
     modified_by?: string
     created_on?: string
     modified_on?: string
-    settings?: JSON
-    display_order?: Number
+    settings?: any
+    display_order?: number
     parent_id?: string
     enum_values?: TemplateAttributeEnumValue[]
 
@@ -47,7 +47,7 @@ export interface TemplateAttribute {
 export default interface Template {
     id?: string
     name?: string
-    deleted?: Boolean
+    deleted?: boolean
     created_by?: string
     modified_by?: string
     created_on?: string

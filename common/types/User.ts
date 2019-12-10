@@ -20,7 +20,7 @@ export interface WebhookType {
 export interface Webhook {
     id?: string;
     url?: string;
-    topics?: [String];
+    topics?: [string];
     type?: WebhookType
 }
 

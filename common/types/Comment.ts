@@ -1,11 +1,11 @@
 export default interface Comment {
-    id?: String
-    value?: String
-    post_time?: String
-    retracted?: Boolean
-    retracted_by?: String
-    deleted?: Boolean
-    target_id?: String
-    target_type?: String
-    owner?: String
+    id?: string
+    value?: string
+    post_time?: string
+    retracted?: boolean
+    retracted_by?: string
+    deleted?: boolean
+    target_id?: string
+    target_type?: string
+    owner?: string
 }

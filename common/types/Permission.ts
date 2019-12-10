@@ -1,19 +1,19 @@
 export interface PermissionResource {
-    id?: String
-    name?: String
-    resource_type?: String
+    id?: string
+    name?: string
+    resource_type?: string
 }
 
 export interface PermissionSubject {
-    id?: String
-    subject_id?: String
-    subject_source_id?: String
-    subject_type?: String
+    id?: string
+    subject_id?: string
+    subject_source_id?: string
+    subject_type?: string
 }
 
 export default interface Permission {
-    id?: String
-    permission_level?: String
+    id?: string
+    permission_level?: string
     resource?: PermissionResource
     subject?: PermissionSubject
 }
