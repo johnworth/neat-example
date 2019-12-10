@@ -10,7 +10,8 @@
   },
   "nodemonConfig": {
     "watch": [
-      "server"
+      "server",
+      "common"
     ],
     "ext": "js ts",
     "exec": "ts-node --project tsconfig.server.json server/index.ts"
