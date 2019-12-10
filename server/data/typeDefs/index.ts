@@ -7,9 +7,9 @@ import {
     AVUType,
     templateType,
     commentType,
-} from './types';
+} from '../typeDefs/types';
 
-import query from './query';
+import query from '../typeDefs/query';
 
 export default [
     query, 

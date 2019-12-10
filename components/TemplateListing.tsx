@@ -7,6 +7,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
+import Template from '../common/types/Template';
+
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -19,7 +21,7 @@ const useStyles = makeStyles({
 
 export default function TemplateListing(props: any) {
   const classes = useStyles();
-  const { templates } = props;
+  const { templates }:{ templates: Template[]} = props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
@@ -31,10 +33,10 @@ export default function TemplateListing(props: any) {
         </TableHead>
         <TableBody>
           {templates.map(
-            (row: { id: string; name: string; description: string }) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.description}</TableCell>
+            template => (
+              <TableRow key={template.id}>
+                <TableCell>{template.name}</TableCell>
+                <TableCell>{template.description}</TableCell>
               </TableRow>
             )
           )}
