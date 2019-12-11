@@ -2,14 +2,14 @@ import express from 'express';
 import next from 'next';
 import { ApolloServer } from 'apollo-server-express';
 
-import typeDefs from './data/typeDefs';
-import resolvers from './data/resolvers';
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
 
-import IPlantGroupsDataSource from './data/dataSources/IPlantGroupsDataSource';
-import AppsDataSource from './data/dataSources/AppsDataSource';
-import DEDBDataSource from './data/dataSources/DEDBDataSource';
-import PermissionsDataSource from './data/dataSources/PermissionsDataSource';
-import MetadataDBDataSource from './data/dataSources/MetadataDBDataSource';
+import IPlantGroupsDataSource from './graphql/dataSources/IPlantGroupsDataSource';
+import AppsDataSource from './graphql/dataSources/AppsDataSource';
+import DEDBDataSource from './graphql/dataSources/DEDBDataSource';
+import PermissionsDataSource from './graphql/dataSources/PermissionsDataSource';
+import MetadataDBDataSource from './graphql/dataSources/MetadataDBDataSource';
 
 
 const dev: boolean = process.env.NODE_ENV !== 'production';
