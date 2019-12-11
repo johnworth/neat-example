@@ -1,12 +1,13 @@
 import { Pool } from 'pg';
+import * as config from '../config';
 
 // Uses the environment variabled supported by 'pg' to configure the pool.
 const deDBpool = new Pool({
-    connectionString: process.env.DE_DB_URL,
+    connectionString: config.DE_DB_URL,
 });
 
 const metadataDBpool = new Pool({
-    connectionString: process.env.METADATA_DB_URL,
+    connectionString: config.METADATA_DB_URL,
 });
 
 export const queryDEDB = (text: string, params: any[]) => {

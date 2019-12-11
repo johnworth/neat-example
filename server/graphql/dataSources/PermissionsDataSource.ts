@@ -1,9 +1,10 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
+import * as config from '../../config';
 
 export default class PermissionsDataSource extends RESTDataSource {
     constructor() {
         super();
-        this.baseURL = process.env.PERMISSIONS_URL;
+        this.baseURL = config.PERMISSIONS_URL;
     }
 
     async getAnalysisPermissions(analysisID: string) {

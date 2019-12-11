@@ -2,14 +2,15 @@
 
 import { RESTDataSource } from 'apollo-datasource-rest';
 import UserInfo from '../../../common/types/User';
+import * as config from '../../config';
 
 export default class IPlantGroupsDataSource extends RESTDataSource {
     grouperUser?: string;
 
     constructor() {
         super();
-        this.baseURL = process.env.IPLANT_GROUPS_URL;
-        this.grouperUser = process.env.GROUPER_USER;
+        this.baseURL = config.IPLANT_GROUPS_URL;
+        this.grouperUser = config.GROUPER_USER;
     }
 
     /**
