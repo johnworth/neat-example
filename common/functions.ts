@@ -10,11 +10,20 @@ import _ from 'lodash';
  * @returns The new version of the object with the keys modified by the callback.
  */
 export function deepMapKeys(obj: any, callback: (x: string) => string): any {
-    return _.fromPairs(
+    return _.isString(obj) ?
+        obj
+    :
+    _.fromPairs(
         _.toPairsIn(obj).map(
             ([key, value]) => [ 
-                callback(key), 
-                _.isPlainObject(value) ? deepMapKeys(value, callback) : value 
+                callback(key),
+                _.isArray(value) ?
+                    _.map(value, v => deepMapKeys(v, callback))
+                :
+                _.isPlainObject(value) ? 
+                    deepMapKeys(value, callback) 
+                : 
+                value 
             ]
         )
     );
