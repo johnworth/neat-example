@@ -6,8 +6,8 @@ export interface TemplateAttributeValueType {
 export interface TemplateAttributeEnumValue {
     id?: string
     value?: string
-    is_default?: boolean
-    display_order?: number
+    isDefault?: boolean
+    displayOrder?: number
 }
 
 export interface TemplateAttributeSynonym {
@@ -15,14 +15,14 @@ export interface TemplateAttributeSynonym {
     name?: string
     description?: string
     required?: boolean
-    value_type?: TemplateAttributeValueType
-    created_by?: string
-    modified_by?: string
-    created_on?: string
-    modified_on?: string
+    valueType?: TemplateAttributeValueType
+    createdBy?: string
+    modifiedBy?: string
+    createdOn?: string
+    modifiedOn?: string
     settings?: any
-    display_order?: number
-    enum_values?: TemplateAttributeEnumValue[]
+    displayOrder?: number
+    enumValues?: TemplateAttributeEnumValue[]
 }
 
 export interface TemplateAttribute {
@@ -30,15 +30,15 @@ export interface TemplateAttribute {
     name?: string
     description?: string
     required?: boolean
-    value_type?: TemplateAttributeValueType
-    created_by?: string
-    modified_by?: string
-    created_on?: string
-    modified_on?: string
+    valueType?: TemplateAttributeValueType
+    createdBy?: string
+    modifiedBy?: string
+    createdOn?: string
+    modifiedOn?: string
     settings?: any
-    display_order?: number
-    parent_id?: string
-    enum_values?: TemplateAttributeEnumValue[]
+    displayOrder?: number
+    parentId?: string
+    enumValues?: TemplateAttributeEnumValue[]
 
     // Recursive
     synonyms?: TemplateAttributeSynonym[]
@@ -48,10 +48,10 @@ export default interface Template {
     id?: string
     name?: string
     deleted?: boolean
-    created_by?: string
-    modified_by?: string
-    created_on?: string
-    modified_on?: string
+    createdBy?: string
+    modifiedBy?: string
+    createdOn?: string
+    modifiedOn?: string
     description?: string
 
     // Recursive, will contain attributes of attributes

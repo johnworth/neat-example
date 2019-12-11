@@ -11,7 +11,7 @@ export default gql`
         id: String
         value: String
         is_default: Boolean
-        display_order: Int
+        displayOrder: Int
     }
 
     type TemplateAttributeSynonym {
@@ -19,14 +19,14 @@ export default gql`
         name: String
         description: String
         required: Boolean
-        value_type: TemplateAttributeValueType
-        created_by: String
-        modified_by: String
-        created_on: String
-        modified_on: String
+        valueType: TemplateAttributeValueType
+        createdBy: String
+        modifiedBy: String
+        createdOn: String
+        modifiedOn: String
         settings: JSON
-        display_order: Int
-        enum_values: [TemplateAttributeEnumValue]
+        displayOrder: Int
+        enumValues: [TemplateAttributeEnumValue]
     }
 
     type TemplateAttribute {
@@ -34,15 +34,15 @@ export default gql`
         name: String
         description: String
         required: Boolean
-        value_type: TemplateAttributeValueType
-        created_by: String
-        modified_by: String
-        created_on: String
-        modified_on: String
+        valueType: TemplateAttributeValueType
+        createdBy: String
+        modifiedBy: String
+        createdOn: String
+        modifiedOn: String
         settings: JSON
-        display_order: Int
-        parent_id: String
-        enum_values: [TemplateAttributeEnumValue]
+        displayOrder: Int
+        parentId: String
+        enumValues: [TemplateAttributeEnumValue]
 
         """Recursive"""
         synonyms: [TemplateAttributeSynonym]
@@ -52,10 +52,10 @@ export default gql`
         id: String
         name: String
         deleted: Boolean
-        created_by: String
-        modified_by: String
-        created_on: String
-        modified_on: String
+        createdBy: String
+        modifiedBy: String
+        createdOn: String
+        modifiedOn: String
         description: String
 
         """Recursive, will contain attributes of attributes"""

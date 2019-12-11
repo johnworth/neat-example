@@ -41,7 +41,7 @@ export default {
             return dataSources.metadataDB.getAttributeSynonyms(attr.id);
         },
 
-        enum_values: async (
+        enumValues: async (
             attr: TemplateAttribute, 
             _args: any, 
             { dataSources }:{ dataSources: any }

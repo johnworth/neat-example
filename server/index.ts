@@ -11,6 +11,10 @@ import DEDBDataSource from './graphql/dataSources/DEDBDataSource';
 import PermissionsDataSource from './graphql/dataSources/PermissionsDataSource';
 import MetadataDBDataSource from './graphql/dataSources/MetadataDBDataSource';
 
+import { applyMiddleware } from 'graphql-middleware'
+import { makeExecutableSchema } from 'graphql-tools'
+import camelCaseMiddleware from './graphql/middleware/camelCase';
+
 
 const dev: boolean = process.env.NODE_ENV !== 'production';
 const port: number = parseInt(process.env.PORT || '3000', 10);
@@ -18,9 +22,14 @@ const port: number = parseInt(process.env.PORT || '3000', 10);
 const app = next({dev});
 const handle = app.getRequestHandler();
 
+const schema = makeExecutableSchema({ typeDefs, resolvers });
+const schemaWithMiddleware = applyMiddleware(
+    schema,
+    camelCaseMiddleware
+);
+
 const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema: schemaWithMiddleware,
     dataSources: () => ({
         apps: new AppsDataSource(),
         iplantGroups: new IPlantGroupsDataSource(),
