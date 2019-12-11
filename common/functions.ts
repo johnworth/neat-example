@@ -13,20 +13,17 @@ export function deepMapKeys(obj: any, callback: (x: string) => string): any {
     return _.isString(obj) ?
         obj
     :
-    _.fromPairs(
-        _.toPairsIn(obj).map(
-            ([key, value]) => [ 
-                callback(key),
-                _.isArray(value) ?
-                    _.map(value, v => deepMapKeys(v, callback))
-                :
-                _.isPlainObject(value) ? 
-                    deepMapKeys(value, callback) 
-                : 
-                value 
-            ]
+    _.isArray(obj) ?
+        _.map(obj, item => deepMapKeys(item, callback))
+    :
+    _.isPlainObject(obj) ?
+        _.fromPairs(
+            _.toPairsIn(obj).map(
+                ([key, value]) => [ callback(key), deepMapKeys(value, callback) ]
+            )
         )
-    );
+    :
+    obj
 }
 
 /**

@@ -100,3 +100,37 @@ it("camelcaseit handles nested lists with multiple non-object items", () => {
 
     expect(camelcaseit(original)).toStrictEqual(expected);
 });
+
+it("camelcaseit handles top-level arrays", () => {
+    const original = [
+        {
+            "one" : "1"
+        },
+        {
+            "one_two" : "1 2"
+        },
+        {
+            "one_two_three" : {
+                "nested_1" : "nested 1",
+                "nested_1-2" : "nested 1 2"
+            }
+        }
+    ];
+
+    const expected = [
+        {
+            "one" : "1"
+        },
+        {
+            "oneTwo" : "1 2"
+        },
+        {
+            "oneTwoThree" : {
+                "nested1" : "nested 1",
+                "nested12" : "nested 1 2"
+            }
+        }
+    ];
+
+    expect(camelcaseit(original)).toStrictEqual(expected);
+});
