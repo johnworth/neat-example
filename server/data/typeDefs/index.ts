@@ -6,8 +6,7 @@ import permissionType from './Permission';
 import AVUType from './AVU';
 import templateType from './Template';
 import commentType from './Comment';
-
-import query from './query';
+import query from './Query';
 
 export default [
     query, 
