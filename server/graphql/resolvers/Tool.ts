@@ -18,19 +18,19 @@ export default {
             { dataSources }:{ dataSources: any }
         ): Promise<Container> => dataSources.deDB.getContainerSettingsByToolID(tool.id),
 
-        container_image: async (
+        containerImage: async (
             tool: Tool, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<ContainerImage> => dataSources.deDB.getContainerImageByToolID(tool.id),
 
-        tool_requests: async (
+        toolRequests: async (
             tool: Tool, 
             _args: any, 
             { dataSources }:{ dataSources: any }
         ): Promise<ToolRequest[]> => dataSources.deDB.getToolRequests(tool.id),
 
-        gpu_enabled: async (
+        gpuEnabled: async (
             tool: Tool, 
             _args: any, 
             { dataSources }:{ dataSources: any }
@@ -38,7 +38,7 @@ export default {
     },
 
     ToolRequest: {
-        tool_architecture: async (
+        toolArchitecture: async (
             request: any, 
             _args: any, 
             { dataSources }:{ dataSources: any }
@@ -56,7 +56,7 @@ export default {
     },
 
     ToolRequestStatus: {
-        status_code: async (
+        statusCode: async (
             status: any, 
             _args: any, 
             { dataSources }:{ dataSources: any }
@@ -66,7 +66,7 @@ export default {
     },
 
     Container: {
-        volumes_froms: async (
+        volumesFroms: async (
             container: any, 
             _args: any, 
             { dataSources }:{ dataSources: any }

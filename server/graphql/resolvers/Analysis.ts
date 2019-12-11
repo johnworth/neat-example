@@ -26,7 +26,7 @@ export default {
             return dataSources.deDB.getAnalysisStepUpdates(step.external_id);
         },
 
-        app_step: async (step: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        appStep: async (step: any, _args: any, { dataSources }:{ dataSources: any }) => {
             console.log(step);
             // step.app_id comes from the database but isn't in the graphql schema. which is fine.
             return dataSources.deDB.getAppStepByNumberAndAppID(step.app_step_number, step.app_id);

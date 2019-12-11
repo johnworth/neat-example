@@ -15,14 +15,14 @@ export default gql`
     }
 
     type AnalysisStep {
-        step_number: Int
-        external_id: String
-        start_date: String
-        end_date: String
+        stepNumber: Int
+        externalId: String
+        startFate: String
+        endFate: String
         status: String
-        app_step_number: Int
-        app_step: AppStep
-        step_type: String
+        appStepNumber: Int
+        appStep: AppStep
+        stepType: String
         updates: [AnalysisStepUpdate]
     }
 
@@ -31,15 +31,15 @@ export default gql`
     }
 
     type AnalysisParameter {
-        param_type: String
-        param_id: String
-        info_type: String
-        is_default_value: Boolean
-        param_name: String
-        parameter_value: AnalysisParameterValue
-        is_visible: Boolean
-        full_param_id: String
-        data_format: String
+        paramType: String
+        paramId: String
+        infoType: String
+        isDefaultValue: Boolean
+        paramName: String
+        parameterValue: AnalysisParameterValue
+        isVisible: Boolean
+        fullParamId: String
+        dataFormat: String
     }
 
     type Analysis {
@@ -47,20 +47,20 @@ export default gql`
         avus: [AVU]
         deleted: Boolean
         description: String
-        end_date: String
+        endDate: String
         id: String
         name: String
         notify: Boolean
         parameters: [AnalysisParameter]
-        parent_id: String
+        parentId: String
         permissions: [Permission]
-        planned_end_date: String
-        result_folder_path: String
-        start_date: String
+        plannedEndDate: String
+        resultFolderPath: String
+        startDate: String
         status: String
         steps: [AnalysisStep]
         subdomain: String
-        system_id: String
+        systemId: String
         type: String
         username: String
     }

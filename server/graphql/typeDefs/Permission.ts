@@ -4,19 +4,19 @@ export default gql`
     type PermissionResource {
         id: String
         name: String
-        resource_type: String
+        resourceType: String
     }
 
     type PermissionSubject {
         id: String
-        subject_id: String
-        subject_source_id: String
-        subject_type: String
+        subjectId: String
+        subjectSourceId: String
+        subjectType: String
     }
 
     type Permission {
         id: String
-        permission_level: String
+        permissionLevel: String
         resource: PermissionResource
         subject: PermissionSubject
     }

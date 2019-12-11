@@ -12,10 +12,10 @@ export default gql`
         name: String
 
         """The last name of the user."""
-        last_name: String
+        lastName: String
 
         """The first name of the user."""
-        first_name: String
+        firstName: String
 
         """The contact email address for the user."""
         email: String
@@ -23,13 +23,13 @@ export default gql`
         """The university the user is associated with."""
         institution: String
 
-        source_id: String
+        sourceId: String
 
         """A JSON encoded string containing the layout settings."""
         session: JSON
 
         """A JSON encoded string containing the user's saved searches."""
-        saved_searches: JSON
+        savedSearches: JSON
 
         """A JSON encoded string containing the user's preferences."""
         preferences: JSON
@@ -38,7 +38,7 @@ export default gql`
         workspace: Workspace
 
         """The user's system_id configuration."""
-        system_ids: SystemIDs
+        systemIds: SystemIDs
 
         """The webhooks the user has configured."""
         webhooks: [Webhook]
@@ -58,14 +58,14 @@ export default gql`
 
     type Workspace {
         id: String
-        root_category_id: String
-        is_public: Boolean
-        new_workspace: Boolean
+        rootCategoryId: String
+        isPublic: Boolean
+        newWorkspace: Boolean
     }
 
     type SystemIDs {
-        de_system_id: String
-        all_system_ids: [String]
+        deSystemId: String
+        allSystemIds: [String]
     }
 
     type WebhookType {

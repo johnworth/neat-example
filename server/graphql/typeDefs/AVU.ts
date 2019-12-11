@@ -7,12 +7,12 @@ export default gql`
         attribute: String
         value: String
         unit: String
-        target_id: String
-        target_type: String
-        created_on: String
-        created_by: User
-        modified_on: String
-        modified_by: User
+        targetId: String
+        targetType: String
+        createdOn: String
+        createdBy: User
+        modifiedOn: String
+        modifiedBy: User
     }
 
 `;

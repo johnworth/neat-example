@@ -7,10 +7,10 @@ type Comment {
     value: String
     post_time: String
     retracted: Boolean
-    retracted_by: String
+    retractedBy: String
     deleted: Boolean
-    target_id: String
-    target_type: String
+    targetId: String
+    targetType: String
     owner: String
 }
 `;

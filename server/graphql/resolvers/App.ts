@@ -36,12 +36,12 @@ export default {
     },
 
     AppDocumentation: {
-        created_by: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        createdBy: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
             const username = await dataSources.deDB.getUsername(doc.created_by);
             return dataSources.iplantGroups.getUserInfo(username);
         },
 
-        modified_by: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
+        modifiedBy: async (doc: any, _args: any, { dataSources }:{ dataSources: any }) => {
             const username = await dataSources.deDB.getUsername(doc.modified_by);
             return dataSources.iplantGroups.getUserInfo(username);
         },

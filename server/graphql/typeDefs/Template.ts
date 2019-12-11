@@ -10,7 +10,7 @@ export default gql`
     type TemplateAttributeEnumValue {
         id: String
         value: String
-        is_default: Boolean
+        isDefault: Boolean
         displayOrder: Int
     }
 

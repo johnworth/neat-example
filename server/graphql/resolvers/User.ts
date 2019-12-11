@@ -6,7 +6,7 @@ import User, {
 
 export default {
     User: {
-        saved_searches: async (
+        savedSearches: async (
             user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }
@@ -54,7 +54,7 @@ export default {
             return dataSources.apps.getWorkspace(user.username);
         },
 
-        system_ids: async (
+        systemIds: async (
             user: User, 
             _args: any, 
             { dataSources }:{ dataSources: any }

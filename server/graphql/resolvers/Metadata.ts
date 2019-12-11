@@ -5,7 +5,7 @@ import { TemplateAttributeSynonym, TemplateAttributeEnumValue } from 'common/typ
 
 export default {
     AVU: {
-        created_by: async (
+        createdBy: async (
             avu: AVU, 
             _args: any, 
             { dataSources }:{ dataSources: any }
@@ -13,7 +13,7 @@ export default {
             return dataSources.iplantGroups.getUserInfo(avu.created_by);
         },
 
-        modified_by: async (
+        modifiedBy: async (
             avu: AVU, 
             _args: any, 
             { dataSources }:{ dataSources: any }
