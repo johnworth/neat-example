@@ -7,7 +7,8 @@
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "storybook": "start-storybook -p 9009 -s public",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "nodemonConfig": {
     "watch": [
