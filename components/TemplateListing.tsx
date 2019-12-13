@@ -24,9 +24,9 @@ export default function TemplateListing(props: any) {
   const { templates }: { templates: Template[] } = props;
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label="simple table" stickyHeader>
         <TableHead>
-          <TableRow>
+          <TableRow style={{ backgroundColor: "gray" }}>
             <TableCell>Name</TableCell>
             <TableCell>Description</TableCell>
           </TableRow>
